@@ -23,18 +23,32 @@ public class Main {
         LibraryBook node = new LibraryBook("Chima", "Node.js for JJC", 4);
         LibraryBook javaAdvanced = new LibraryBook("Prosper", "Java for JJC", 5);
 
-        mark.borrowABook(javaNote);
-        prosper.borrowABook(javaAdvanced);
-        ikay.borrowABook(node);
-        emekus.borrowABook(ios);
-        mark.borrowABook(node);
-        joe.lendBook(javaNote, mark);
-        joe.lendBook(node, prosper);
+        joe.addBook(decagonLib.getAvailableBooks(), javaNote);
+        System.out.println(decagonLib.getAvailableBooks().size());
+        joe.addBook(decagonLib.getAvailableBooks(), node);
+        System.out.println(decagonLib.getAvailableBooks().size());
+
+        System.out.println(decagonLib.getAvailableBooks().get(javaNote.getTitle()));
+        System.out.println(prosper.getBorrowedBooks().size());
+        prosper.borrowABook(javaNote, joe);
+        System.out.println(decagonLib.getLentRecords().size());
 
 
-        decagonLib = new Library();
+        System.out.println("========================");
+        joe.lendBook(javaNote, prosper);
+        System.out.println(decagonLib.getAvailableBooks().get(javaNote.getTitle()));
+        System.out.println(decagonLib.getLentRecords().size());
+        System.out.println(prosper.getBorrowedBooks().size());
 
-
+//        prosper.borrowABook(javaAdvanced, joe);
+//        mark.borrowABook(javaNote, joe);
+//        ikay.borrowABook(node, joe);
+//        emekus.borrowABook(ios, joe);
+//        mark.borrowABook(node, joe);
+//        System.out.println("=============");
+//        System.out.println(joe.requestQueue());
+//        joe.lendBook(javaNote, mark);
+//        joe.lendBook(node, prosper);
 
     }
 }

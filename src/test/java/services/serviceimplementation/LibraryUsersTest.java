@@ -20,8 +20,9 @@ class LibraryUsersTest {
     void borrowABook() {
         // Given
         Library decagonLib = new Library();
+        Librarian librarian = new Librarian("Joe", "Clint");
         LibraryBook javaNote = new LibraryBook("Elvis", "Java for JJC", 8);
-        user.borrowABook(javaNote);
+        user.borrowABook(javaNote, librarian);
 
         // Method check call
         final int expectedResult = 1;
@@ -33,8 +34,9 @@ class LibraryUsersTest {
     @Test@DisplayName("To return a borrowed book to the library")
     void returnBook() {
         // Given
+        Librarian librarian = new Librarian("Joe", "Clint");
         LibraryBook ios = new LibraryBook("Elvis", "iOS for JJC", 8);
-        user.borrowABook(ios);
+        user.borrowABook(ios, librarian);
         user.returnBook(ios);
 
         // Method check call

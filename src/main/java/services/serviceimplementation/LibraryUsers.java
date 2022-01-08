@@ -1,6 +1,7 @@
 package services.serviceimplementation;
 
 import enums.Role;
+import models.Library;
 import models.Person;
 import services.LibraryUsersServices;
 
@@ -32,12 +33,21 @@ public class LibraryUsers extends Person implements LibraryUsersServices {
     }
 
     @Override
-    public void borrowABook(LibraryBook book) {
+    public void borrowABook(LibraryBook book, Librarian librarian) {
         if (!book.getTitle().isEmpty()) {
             LocalDateTime time = LocalDateTime.now();
             appliedList.put(this, book);
+            librarian.requestQueue().add(this);
             applyTime.put(time, this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "LibraryUsers{" +
+                "role=" + role +
+                ", borrowedBooks=" + borrowedBooks +
+                '}';
     }
 
     @Override
